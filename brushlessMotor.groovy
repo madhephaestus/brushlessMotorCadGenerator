@@ -1,3 +1,5 @@
+import com.neuronrobotics.bowlerstudio.vitamins.Vitamins
+
 import eu.mihosoft.vrl.v3d.CSG
 import eu.mihosoft.vrl.v3d.Cube
 import eu.mihosoft.vrl.v3d.Cylinder
@@ -19,6 +21,9 @@ CSG generate(){
 	println rotorSpacingShortValue
 	println rotorSpacingLongValue
 	println statorBoltSpacingValue
+	CSG vitamin_capScrew = Vitamins.get("capScrew", boltSizeValue)
+					
+	
 	//println measurments
 	// Stub of a CAD object
 	CSG part = new Cylinder(diameterValue/2.0, heightValue).toCSG()
@@ -27,4 +32,4 @@ CSG generate(){
 		.setParameter(size)
 		.setRegenerate({generate()})
 }
-return generate() 
+return generate()
