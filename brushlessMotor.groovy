@@ -10,6 +10,8 @@ CSG generate(){
 		args=["TL2955"]
 	// The variable that stores the current size of this vitamin
 	StringParameter size = new StringParameter(	type+" Default",args.get(0),Vitamins.listVitaminSizes(type))
+	LengthParameter boltLength		= new LengthParameter("Bolt Length",10,[180,10])
+	boltLength.setValue(5)
 	HashMap<String,Object> measurments = Vitamins.getConfiguration( type,size.getStrValue())
 
 	double diameterValue = measurments.diameter
