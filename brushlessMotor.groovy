@@ -8,9 +8,11 @@ CSG generate(){
 	HashMap<String,Object> measurments = Vitamins.getConfiguration( type,size.getStrValue())
 
 	def diameterValue = measurments.diameter
+	def boltSizeValue = measurments.boltSize
 	def heightValue = measurments.height
-	println "Loaded from vitamins measurments diameterValue:  "+diameterValue"+ value is = "+diameterValue
-	println "Loaded from vitamins measurments heightValue:  "+heightValue"+ value is = "+heightValue
+	println "Loaded from vitamins measurments diameterValue:  "+diameterValue+" value is = "+diameterValue
+	println "Loaded from vitamins measurments boltSizeValue:  "+boltSizeValue+" value is = "+boltSizeValue
+	println "Loaded from vitamins measurments heightValue:  "+heightValue+" value is = "+heightValue
 	// Stub of a CAD object
 	CSG part = new Cube().toCSG()
 	return part
