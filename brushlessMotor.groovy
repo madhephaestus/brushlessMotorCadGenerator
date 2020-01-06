@@ -15,18 +15,33 @@ CSG generate(){
 	double diameterValue = measurments.diameter
 	String boltSizeValue = measurments.boltSize
 	double heightValue = measurments.height
+	double statorNumberOfBolts=measurments.statorNumberOfBolts
 	double rotorSpacingShortValue = measurments.rotorSpacingShort
 	double rotorSpacingLongValue = measurments.rotorSpacingLong
 	double statorBoltSpacingValue = measurments.statorBoltSpacing
 	println rotorSpacingShortValue
 	println rotorSpacingLongValue
 	println statorBoltSpacingValue
-	CSG vitamin_capScrew = Vitamins.get("capScrew", boltSizeValue)
-					
 	
-	//println measurments
-	// Stub of a CAD object
+	for(String key:measurments.keySet()) {
+		println "Key "+key+" value "+measurments.get(key)
+	}								
+	
+	CSG vitamin_capScrew = Vitamins.get("capScrew", boltSizeValue)
+									.roty(180)
+									.toZMax()
+	CSG boltSet =null;
+	double degreesPer = 360/statorNumberOfBolts
+	for(int i=0;i<statorNumberOfBolts;i++) {
+		CSG moved = vitamin_capScrew.movex(statorBoltSpacingValue/2)
+									.rotz(degreesPer*i)
+		if(boltSet==null)
+			boltSet=moved
+		else
+			boltSet=boltSet.union(moved)
+	}
 	CSG part = new Cylinder(diameterValue/2.0, heightValue).toCSG()
+					.union(boltSet)
 	
 	return part
 		.setParameter(size)
