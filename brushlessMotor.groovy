@@ -1,3 +1,6 @@
+import eu.mihosoft.vrl.v3d.CSG
+import eu.mihosoft.vrl.v3d.Cube
+import eu.mihosoft.vrl.v3d.Cylinder
 import eu.mihosoft.vrl.v3d.parametrics.*;
 CSG generate(){
 	String type= "brushlessMotor"
@@ -7,15 +10,19 @@ CSG generate(){
 	StringParameter size = new StringParameter(	type+" Default",args.get(0),Vitamins.listVitaminSizes(type))
 	HashMap<String,Object> measurments = Vitamins.getConfiguration( type,size.getStrValue())
 
-	def diameterValue = measurments.diameter
-	def boltSizeValue = measurments.boltSize
-	def heightValue = measurments.height
-	def rotorSpacingShortValue = measurments.rotorSpacingShort
-	def rotorSpacingLongValue = measurments.rotorSpacingLong
-	def statorBoltSpacingValue = measurments.statorBoltSpacing
-	println measurments
+	double diameterValue = measurments.diameter
+	String boltSizeValue = measurments.boltSize
+	double heightValue = measurments.height
+	double rotorSpacingShortValue = measurments.rotorSpacingShort
+	double rotorSpacingLongValue = measurments.rotorSpacingLong
+	double statorBoltSpacingValue = measurments.statorBoltSpacing
+	println rotorSpacingShortValue
+	println rotorSpacingLongValue
+	println statorBoltSpacingValue
+	//println measurments
 	// Stub of a CAD object
-	CSG part = new Cube().toCSG()
+	CSG part = new Cylinder(diameterValue/2.0, heightValue).toCSG()
+	
 	return part
 		.setParameter(size)
 		.setRegenerate({generate()})
