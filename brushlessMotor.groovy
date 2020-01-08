@@ -21,9 +21,6 @@ CSG generate(){
 	double rotorSpacingShortValue = measurments.rotorSpacingShort
 	double rotorSpacingLongValue = measurments.rotorSpacingLong
 	double statorBoltSpacingValue = measurments.statorBoltSpacing
-	println rotorSpacingShortValue
-	println rotorSpacingLongValue
-	println statorBoltSpacingValue
 	
 	for(String key:measurments.keySet()) {
 		println "Key "+key+" value "+measurments.get(key)
