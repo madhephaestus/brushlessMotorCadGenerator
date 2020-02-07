@@ -22,10 +22,6 @@ CSG generate(){
 	double rotorSpacingLongValue = measurments.rotorSpacingLong
 	double statorBoltSpacingValue = measurments.statorBoltSpacing
 	
-	for(String key:measurments.keySet()) {
-		println "Key "+key+" value "+measurments.get(key)
-	}								
-	
 	CSG vitamin_capScrew = Vitamins.get("capScrew", boltSizeValue)
 									.roty(180)
 									.toZMax()
